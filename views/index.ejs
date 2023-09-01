@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        @media only screen and (max-width: 600px){
+            #center {
+                width: 90%;
+            }
+            button{
+                right: 25%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button class="Mode" onclick="changeMode()">DarkMode</button>
+    <div id="main">
+        <h1>Todo List</h1>
+        <div id="center">
+            <form action="todo/data" method="post">
+                <input placeholder="Add your text" type="text" name="name" required>
+                <button type="submit">Add</button>
+            </form>
+            <div class="list">
+                <ul>
+                    <% for(var i of todoData){%>
+                        <li>
+                            <label class="list-left">
+                                <input type="radio" onclick="underlineItem(event)">
+                                <span style="white-space: nowrap;"><%= i.name %></span>
+                            </label>
+                            <a href="delete/todoData/?id=<%= i._id%>">
+                                <i class="fa-solid fa-x"></i>
+                            </a>
+                        </li>
+                        <%}%>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://kit.fontawesome.com/338e4173fa.js" crossorigin="anonymous"></script>
+<script src="/script.js"></script>
+</html>
